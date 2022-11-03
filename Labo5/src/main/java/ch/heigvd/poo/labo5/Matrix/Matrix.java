@@ -30,13 +30,13 @@ public class Matrix {
     }
 
     public Matrix(int[][] matrix) {
+        //TODO : Do we need to throw an exception if the given matrix is empty?
         nbLines = matrix.length;
         nbRows = matrix[0].length;
         modulus = 0;
-
+        internalValue  = new int[nbLines][nbRows];
         for (int i = 0; i < nbLines; ++i) {
             for (int j = 0; j < nbRows; ++j) {
-                internalValue  = new int[nbLines][nbRows];
                 internalValue[i][j] = matrix[i][j];
                 modulus = max(modulus, matrix[i][j]);
             }
