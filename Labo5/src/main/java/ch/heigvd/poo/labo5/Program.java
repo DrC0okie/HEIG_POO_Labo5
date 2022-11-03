@@ -2,7 +2,9 @@ package ch.heigvd.poo.labo5;
 
 import ch.heigvd.poo.labo5.Matrix.Matrix;
 import ch.heigvd.poo.labo5.operations.Addition;
+import ch.heigvd.poo.labo5.operations.Multiplication;
 import ch.heigvd.poo.labo5.operations.Operation;
+import ch.heigvd.poo.labo5.operations.Subtraction;
 
 public class Program {
     public static void main(String[] args) {
@@ -14,8 +16,13 @@ public class Program {
                     new int[][]{{1, 4, 2, 3, 2},{0, 1, 0, 4, 2},{0, 0, 2, 0, 2}}, 5);
 
             System.out.println("M1 : \n" + m1 + '\n' + "M2 : \n" + m2 + '\n');
-            Matrix result = executeOperation(m1, m2, new Addition());
-            System.out.println("M1 + M2 : \n" + result);
+
+            System.out.println("M1 + M2 : \n" + executeOperation(m1, m2,
+                    new Addition()));
+            System.out.println("M1 - M2 : \n" + executeOperation(m1, m2,
+                    new Subtraction()));
+            System.out.println("M1 * M2 : \n" + executeOperation(m1, m2,
+                    new Multiplication()));
 
         } catch (RuntimeException e) {
             e.printStackTrace();

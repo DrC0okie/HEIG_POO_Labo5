@@ -65,7 +65,7 @@ public class Matrix {
         StringBuilder tmp = new StringBuilder();
         for (int i = 0; i < nbLines; ++i) {
             for (int j = 0; j < nbRows; ++j) {
-                tmp.append(internalValue[i][j]);
+                tmp.append(internalValue[i][j]).append(" ");
             }
             tmp.append('\n');
         }
