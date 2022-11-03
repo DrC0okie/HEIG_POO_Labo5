@@ -6,8 +6,8 @@ import static java.lang.Math.max;
 public class Matrix {
 
     private int[][] internalValue;
-    private final int nbLines;
-    private final int nbRows;
+    private int nbLines;
+    private int nbRows;
 
     private static final Random random = new Random();
 
@@ -29,16 +29,15 @@ public class Matrix {
         return internalValue[i][j];
     }
 
-    public Matrix(int[][] matrix) {
+    public Matrix(int[][] matrix, int modulus) {
         //TODO : Do we need to throw an exception if the given matrix is empty?
         nbLines = matrix.length;
         nbRows = matrix[0].length;
-        modulus = 0;
+        this.modulus = modulus;
         internalValue  = new int[nbLines][nbRows];
         for (int i = 0; i < nbLines; ++i) {
             for (int j = 0; j < nbRows; ++j) {
                 internalValue[i][j] = matrix[i][j];
-                modulus = max(modulus, matrix[i][j]);
             }
         }
     }
@@ -71,5 +70,9 @@ public class Matrix {
             tmp.append('\n');
         }
         return tmp.toString();
+    }
+
+    public boolean inBounds(int lineIndex, int rowIndex){
+        return lineIndex <= nbLines - 1 && rowIndex <= nbRows - 1;
     }
 }
