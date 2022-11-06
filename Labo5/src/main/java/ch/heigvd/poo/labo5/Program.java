@@ -1,29 +1,42 @@
+/*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------
+File name       : Program1.java
+Author(s)       : Kévin Farine, Timothée Van Hove
+Created         : 3 nov. 2022
+Description     : Program that execute +, - and * operations on matrices created
+                  with random values.
+Remark(s)       : This program automatically closes after displaying the result.
+JDK             : OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------*/
 package ch.heigvd.poo.labo5;
-
 import ch.heigvd.poo.labo5.Matrix.Matrix;
-import ch.heigvd.poo.labo5.operations.Addition;
-import ch.heigvd.poo.labo5.operations.Multiplication;
-import ch.heigvd.poo.labo5.operations.Operation;
-import ch.heigvd.poo.labo5.operations.Subtraction;
 
 public class Program {
+    final static int ARG_NUMBER = 5;
+
     public static void main(String[] args) {
 
+        if (args.length != ARG_NUMBER) {
+            System.err.println("5 expected arguments, " + args.length + " given.\n" +
+                    "The arguments must be: <L1> <R1> <L2> <R2> <Modulus> \n" +
+                    "<L1> : number of lines of the matrix 1\n" +
+                    "<R1> : number of row of the matrix 1\n" +
+                    "The program will exit.");
+            System.exit(-1);
+        }
         try {
-            Matrix m1 = new Matrix(
-                    new int[][]{{1, 3, 1, 1}, {3, 2, 4, 2}, {1, 0, 1, 0}}, 5);
-            Matrix m2 = new Matrix(
-                    new int[][]{{1, 4, 2, 3, 2},{0, 1, 0, 4, 2},{0, 0, 2, 0, 2}}, 5);
+            int[] arguments = getInputArguments(args);
 
-            System.out.println("M1 : \n" + m1 + '\n' + "M2 : \n" + m2 + '\n');
+            Matrix matrix1 = new Matrix(arguments[0], arguments[1], arguments[4]);
+            Matrix matrix2 = new Matrix(arguments[2], arguments[3], arguments[4]);
 
-            System.out.println("M1 + M2 : \n" + executeOperation(m1, m2,
-                    new Addition()));
-            System.out.println("M1 - M2 : \n" + executeOperation(m1, m2,
-                    new Subtraction()));
-            System.out.println("M1 * M2 : \n" + executeOperation(m1, m2,
-                    new Multiplication()));
-
+            System.out.println("The modulus is " + arguments[4]);
+            System.out.println("one: \n" + matrix1 + '\n' + "two: \n" + matrix2);
+            System.out.println("one + two : \n" + matrix1.add(matrix2));
+            System.out.println("one - two : \n" + matrix1.sub(matrix2));
+            System.out.println("one * two : \n" + matrix1.mult(matrix2));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            System.err.println("The given arguments must be integers");
         } catch (RuntimeException e) {
             e.printStackTrace();
             System.err.println("The program will exit.");
@@ -31,19 +44,10 @@ public class Program {
         }
     }
 
-    private static Matrix executeOperation(Matrix m1, Matrix m2, Operation op) {
-        int nbLines = Math.max(m1.getNbLines(), m2.getNbLines());
-        int nbRows = Math.max(m2.getNbRows(), m2.getNbRows());
-        int[][] result = new int[nbLines][nbRows];
-        for (int i = 0; i < nbLines; ++i) {
-            for (int j = 0; j < nbRows; ++j) {
-                int tmpM1 = m1.inBounds(i, j) ? m1.at(i, j) : 0;
-                int tmpM2 = m2.inBounds(i, j) ? m2.at(i, j) : 0;
-                result[i][j] = Math.floorMod(op.execute(tmpM1, tmpM2),
-                        m1.getModulus());
-            }
-        }
-        return new Matrix(result, m1.getModulus());
+    static int[] getInputArguments(String[] args) throws NumberFormatException {
+        int[] arguments = new int[args.length];
+        for (int i = 0; i < args.length; ++i)
+            arguments[i] = Integer.parseInt(args[i]);
+        return arguments;
     }
-
 }
