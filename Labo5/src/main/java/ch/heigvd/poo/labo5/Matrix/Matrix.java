@@ -10,17 +10,17 @@ public class Matrix {
 
     private int[][] internalValue;
 
-    private int nbLines, nbRows, modulus;
+    private int nbRows, nbColumns, modulus;
 
     private static final Random random = new Random();
 
     public Matrix(int[][] values, int modulus) throws RuntimeException {
-        nbLines = values.length;
-        nbRows = values[0].length;
+        nbRows = values.length;
+        nbColumns = values[0].length;
         this.modulus = modulus;
-        internalValue = new int[nbLines][nbRows];
-        for (int i = 0; i < nbLines; ++i) {
-            for (int j = 0; j < nbRows; ++j) {
+        internalValue = new int[nbRows][nbColumns];
+        for (int i = 0; i < nbRows; ++i) {
+            for (int j = 0; j < nbColumns; ++j) {
                 if (values[i][j] < 0 || values[i][j] >= this.modulus) {
                     throw new RuntimeException(
                             "The given values must be > 0 and < " + (modulus - 1));
@@ -30,19 +30,19 @@ public class Matrix {
         }
     }
 
-    public Matrix(int nbLines, int nbRows, int modulus) throws RuntimeException {
+    public Matrix(int nbRows, int nbColumns, int modulus) throws RuntimeException {
         if (modulus < 0)
             throw new RuntimeException("The modulus must be >= 0");
 
-        if (nbLines < 0 || nbRows < 0)
-            throw new RuntimeException("The number of rows / lines must be >= 0");
+        if (nbRows < 0 || nbColumns < 0)
+            throw new RuntimeException("The number of rows / columns must be >= 0");
 
         this.modulus = modulus;
-        this.nbLines = nbLines;
         this.nbRows = nbRows;
-        internalValue = new int[nbLines][nbRows];
-        for (int i = 0; i < nbLines; ++i) {
-            for (int j = 0; j < nbRows; ++j) {
+        this.nbColumns = nbColumns;
+        internalValue = new int[nbRows][nbColumns];
+        for (int i = 0; i < nbRows; ++i) {
+            for (int j = 0; j < nbColumns; ++j) {
                 internalValue[i][j] = random.nextInt(modulus);
             }
         }
@@ -51,8 +51,8 @@ public class Matrix {
     @Override
     public String toString() {
         StringBuilder tmp = new StringBuilder();
-        for (int i = 0; i < nbLines; ++i) {
-            for (int j = 0; j < nbRows; ++j) {
+        for (int i = 0; i < nbRows; ++i) {
+            for (int j = 0; j < nbColumns; ++j) {
                 tmp.append(internalValue[i][j]).append(" ");
             }
             tmp.append('\n');
@@ -60,36 +60,24 @@ public class Matrix {
         return tmp.toString();
     }
 
-    private boolean inBounds(int lineIndex, int rowIndex) {
-        return lineIndex <= nbLines - 1 && rowIndex <= nbRows - 1;
+    private boolean inBounds(int rowIndex, int columnIndex) {
+        return rowIndex <= nbRows - 1 && columnIndex <= nbColumns - 1;
     }
 
-    private Matrix executeOperation(Matrix m1, Matrix m2, Operation op) throws RuntimeException {
-        if (m1.modulus != m2.modulus)
+    public Matrix executeOperation(Matrix rhs, Operation op) throws RuntimeException {
+        if (this.modulus != rhs.modulus)
             throw new RuntimeException("The modulus of the 2 matrices must be " +
                     "identical");
-        int nbLines = Math.max(m1.nbLines, m2.nbLines);
-        int nbRows = Math.max(m1.nbRows, m2.nbRows);
-        int[][] result = new int[nbLines][nbRows];
-        for (int i = 0; i < nbLines; ++i) {
-            for (int j = 0; j < nbRows; ++j) {
-                int valM1 = m1.inBounds(i, j) ? m1.internalValue[i][j] : 0;
-                int valM2 = m2.inBounds(i, j) ? m2.internalValue[i][j] : 0;
-                result[i][j] = Math.floorMod(op.execute(valM1, valM2), m1.modulus);
+        int nbRows = Math.max(this.nbRows, rhs.nbRows);
+        int nbColumns = Math.max(this.nbColumns, rhs.nbColumns);
+        int[][] result = new int[nbRows][nbColumns];
+        for (int i = 0; i < nbRows; ++i) {
+            for (int j = 0; j < nbColumns; ++j) {
+                int valM1 = this.inBounds(i, j) ? this.internalValue[i][j] : 0;
+                int valM2 = rhs.inBounds(i, j) ? rhs.internalValue[i][j] : 0;
+                result[i][j] = Math.floorMod(op.execute(valM1, valM2), this.modulus);
             }
         }
-        return new Matrix(result, m1.modulus);
-    }
-
-    public Matrix add(Matrix m) throws RuntimeException {
-        return executeOperation(this, m, new Addition());
-    }
-
-    public Matrix sub(Matrix m) throws RuntimeException {
-        return executeOperation(this, m, new Subtraction());
-    }
-
-    public Matrix mult(Matrix m) throws RuntimeException {
-        return executeOperation(this, m, new Multiplication());
+        return new Matrix(result, this.modulus);
     }
 }
