@@ -16,6 +16,10 @@ import ch.heigvd.poo.labo5.operations.Subtraction;
 public class Program {
     final static int ARG_NUMBER = 5;
 
+    /**
+     * The main program who will create a matrix with random value
+     * @param args      Arguments who will be use for the matrix
+     */
     public static void main(String[] args) {
 
         if (args.length != ARG_NUMBER) {
@@ -50,6 +54,12 @@ public class Program {
         }
     }
 
+    /**
+     * Method who convert the arguments into an array of int
+     * @param args  the argument who will be used to be converted
+     * @return      an array of int
+     * @throws NumberFormatException    if an error occure, it would be this kind of error
+     */
     static int[] getInputArguments(String[] args) throws NumberFormatException {
         int[] arguments = new int[args.length];
         for (int i = 0; i < args.length; ++i)

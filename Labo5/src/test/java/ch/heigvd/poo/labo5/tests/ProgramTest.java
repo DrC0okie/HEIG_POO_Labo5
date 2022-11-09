@@ -16,6 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProgramTest {
+
+    /**
+     * test who will execute the operation as same as the exemple
+     */
     @Test
     //Tests the program with the values given in the lab instructions
     public void givenExampleTest() {
@@ -56,6 +60,11 @@ public class ProgramTest {
                 m1.executeOperation(m2, new Multiplication()).toString());
     }
 
+    /**
+     * Method who print the matrix as an 2d arra
+     * @param array the array of array of int
+     * @return  return a string for the printing
+     */
     private String print2dArray(int[][] array) {
         StringBuilder tmp = new StringBuilder();
         for (int[] ints : array) {
@@ -67,6 +76,9 @@ public class ProgramTest {
         return tmp.toString();
     }
 
+    /**
+     * Test who will try out if the modulus is different
+     */
     @Test
     public void operationWithDifferentModulus() {
         Matrix m1 = new Matrix(3, 3, 3),
@@ -81,6 +93,9 @@ public class ProgramTest {
                 () -> m1.executeOperation(m2, new Multiplication()));
     }
 
+    /**
+     * Test who will check the exceptions during the construction of classes
+     */
     @Test
     public void checkConstructionExceptions() {
         assertThrows(RuntimeException.class, () -> {

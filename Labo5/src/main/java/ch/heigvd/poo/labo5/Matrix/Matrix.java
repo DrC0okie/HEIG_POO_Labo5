@@ -22,6 +22,12 @@ public class Matrix {
 
     private static final Random random = new Random();
 
+    /**
+     * Constructor who take an array of array of int and a modulus
+     * @param values    Array of array of int who is the base of the matrix
+     * @param modulus   The modulus who will be used for the matrix
+     * @throws RuntimeException if an error occure, it would be this kind of error
+     */
     public Matrix(int[][] values, int modulus) throws RuntimeException {
         nbRows = values.length;
         nbColumns = values[0].length;
@@ -38,6 +44,13 @@ public class Matrix {
         }
     }
 
+    /**
+     * Constructor who take the number of rows, columns and a modulus.
+     * @param nbRows    The number of rows of the matrix
+     * @param nbColumns The number of columns of the matrix
+     * @param modulus   The modulus who will be used for the matrix
+     * @throws RuntimeException if an error occure, it would be this kind of error
+     */
     public Matrix(int nbRows, int nbColumns, int modulus) throws RuntimeException {
         if (modulus < 0)
             throw new RuntimeException("The modulus must be > 0");
@@ -56,6 +69,10 @@ public class Matrix {
         }
     }
 
+    /**
+     * Method who convert the attribute of the class into a string
+     * @return  The string who will be return
+     */
     @Override
     public String toString() {
         StringBuilder tmp = new StringBuilder();
@@ -68,10 +85,23 @@ public class Matrix {
         return tmp.toString();
     }
 
+    /**
+     * Method who control if the index is inside of the matrix or not
+     * @param rowIndex      Index of the row who will be checked
+     * @param columnIndex   Index of the column who will be checked
+     * @return      a boolean who confirm the index are inside the matrix or not
+     */
     private boolean inBounds(int rowIndex, int columnIndex) {
         return rowIndex <= nbRows - 1 && columnIndex <= nbColumns - 1;
     }
 
+    /**
+     * Method who execute the operation from the class Operation and return a matrix as result
+     * @param rhs   The second matrix who be used to calculate with the base matrix
+     * @param op    The operation who will be used to calculate the new matrix
+     * @return      Return a matrix who is the result of the calculation
+     * @throws RuntimeException if an error occure, it would be this kind of error
+     */
     public Matrix executeOperation(Matrix rhs, Operation op) throws RuntimeException {
         if (this.modulus != rhs.modulus)
             throw new RuntimeException("The modulus of the 2 matrices must be " +
