@@ -18,7 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ProgramTest {
 
     @Test
-    //Tests the program with the values given in the lab instructions
+    /**
+     * Tests the program with the values given in the lab instructions
+     */
     public void givenExampleTest() {
         Matrix m1 = new Matrix(
                 new int[][]{
@@ -111,40 +113,5 @@ public class ProgramTest {
             tmp.append('\n');
         }
         return tmp.toString();
-    }
-
-    /**
-     * Test who will try out if the modulus is different
-     */
-    @Test
-    public void operationWithDifferentModulus() {
-        Matrix m1 = new Matrix(3, 3, 3),
-                m2 = new Matrix(3, 3, 4);
-        assertThrows(RuntimeException.class,
-                () -> m1.executeOperation(m2, new Addition()));
-
-        assertThrows(RuntimeException.class,
-                () -> m1.executeOperation(m2, new Subtraction()));
-
-        assertThrows(RuntimeException.class,
-                () -> m1.executeOperation(m2, new Multiplication()));
-    }
-
-    /**
-     * Test who will check the exceptions during the construction of classes
-     */
-    @Test
-    public void checkConstructionExceptions() {
-        assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(new int[][]{{6}, {0}, {3}}, 5);});
-
-        assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(0, 2, 2);});
-
-        assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(2, -1, 2);});
-
-        assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(3, 3, -1);});
     }
 }
