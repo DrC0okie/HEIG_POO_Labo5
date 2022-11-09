@@ -1,5 +1,5 @@
 /*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------
-File name       : Program1.java
+File name       : Program.java
 Author(s)       : Kevin Farine, Timothée Van Hove
 Created         : 3 nov. 2022
 Description     : Program that execute +, - and * operations on matrices created
