@@ -17,9 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProgramTest {
 
-    /**
-     * test who will execute the operation as same as the exemple
-     */
     @Test
     //Tests the program with the values given in the lab instructions
     public void givenExampleTest() {
@@ -60,11 +57,51 @@ public class ProgramTest {
                 m1.executeOperation(m2, new Multiplication()).toString());
     }
 
-    /**
-     * Method who print the matrix as an 2d arra
-     * @param array the array of array of int
-     * @return  return a string for the printing
-     */
+    @Test
+    public void additionWithDifferentModulus() {
+        assertThrows(RuntimeException.class,
+                () -> new Matrix(3, 4, 5).executeOperation(
+                        new Matrix(3, 4, 6), new Addition()));
+    }
+
+    @Test
+    public void subtractionWithDifferentModulus() {
+        assertThrows(RuntimeException.class,
+                () -> new Matrix(1, 4, 1).executeOperation(
+                        new Matrix(10, 11, 6), new Subtraction()));
+    }
+
+    @Test
+    public void multiplicationWithDifferentModulus() {
+        assertThrows(RuntimeException.class,
+                () -> new Matrix(100, 200, 1000).executeOperation(
+                        new Matrix(66, 1, 1001), new Multiplication()));
+    }
+
+    @Test
+    public void checkConstructionWithValuesHigherThanModulus() {
+        assertThrows(RuntimeException.class, () -> {
+            Matrix m = new Matrix(new int[][]{{6}, {0}, {3}}, 5);});
+    }
+
+    @Test
+    public void checkConstructionWith0Row() {
+        assertThrows(RuntimeException.class, () -> {
+            Matrix m = new Matrix(0, 2, 2);});
+    }
+
+    @Test
+    public void checkConstructionWith0Column() {
+        assertThrows(RuntimeException.class, () -> {
+            Matrix m = new Matrix(2, -1, 2);});
+    }
+
+    @Test
+    public void checkConstructionWithNegativeModulus() {
+        assertThrows(RuntimeException.class, () -> {
+            Matrix m = new Matrix(3, 3, -1);});
+    }
+
     private String print2dArray(int[][] array) {
         StringBuilder tmp = new StringBuilder();
         for (int[] ints : array) {

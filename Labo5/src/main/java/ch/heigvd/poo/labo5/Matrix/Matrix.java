@@ -55,7 +55,7 @@ public class Matrix {
         if (modulus < 0)
             throw new RuntimeException("The modulus must be > 0");
 
-        if (nbRows < 0 || nbColumns < 0)
+        if (nbRows <= 0 || nbColumns <= 0)
             throw new RuntimeException("The number of rows / columns must be > 0");
 
         this.modulus = modulus;
@@ -106,16 +106,16 @@ public class Matrix {
         if (this.modulus != rhs.modulus)
             throw new RuntimeException("The modulus of the 2 matrices must be " +
                     "identical");
-        int nbRows = Math.max(this.nbRows, rhs.nbRows);
-        int nbColumns = Math.max(this.nbColumns, rhs.nbColumns);
-        int[][] result = new int[nbRows][nbColumns];
-        for (int i = 0; i < nbRows; ++i) {
-            for (int j = 0; j < nbColumns; ++j) {
-                int valM1 = this.inBounds(i, j) ? this.internalValue[i][j] : 0;
+        int maxRows = Math.max(nbRows, rhs.nbRows);
+        int maxColumns = Math.max(nbColumns, rhs.nbColumns);
+        int[][] result = new int[maxRows][maxColumns];
+        for (int i = 0; i < maxRows; ++i) {
+            for (int j = 0; j < maxColumns; ++j) {
+                int valM1 = inBounds(i, j) ? internalValue[i][j] : 0;
                 int valM2 = rhs.inBounds(i, j) ? rhs.internalValue[i][j] : 0;
-                result[i][j] = Math.floorMod(op.execute(valM1, valM2), this.modulus);
+                result[i][j] = Math.floorMod(op.execute(valM1, valM2), modulus);
             }
         }
-        return new Matrix(result, this.modulus);
+        return new Matrix(result, modulus);
     }
 }
