@@ -42,7 +42,7 @@ public class Matrix {
         if (modulus < 0)
             throw new RuntimeException("The modulus must be > 0");
 
-        if (nbRows < 0 || nbColumns < 0)
+        if (nbRows <= 0 || nbColumns <= 0)
             throw new RuntimeException("The number of rows / columns must be > 0");
 
         this.modulus = modulus;
