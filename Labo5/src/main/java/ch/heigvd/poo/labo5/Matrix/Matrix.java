@@ -1,3 +1,11 @@
+/*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------
+File name       : Matrix.java
+Author(s)       : Kevin Farine, Timothée Van Hove
+Created         : 3 nov. 2022
+Description     : Class who will create matrix with an array of array of int
+Remark(s)       :
+JDK             : OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------*/
 package ch.heigvd.poo.labo5.Matrix;
 import ch.heigvd.poo.labo5.operations.Addition;
 import ch.heigvd.poo.labo5.operations.Multiplication;

@@ -1,3 +1,12 @@
+/*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------
+File name       : ProgramTest.java
+Author(s)       : Kevin Farine, Timothée Van Hove
+Created         : 3 nov. 2022
+Description     : Program that execute +, - and * operations on matrices created
+                  with fixed values.
+Remark(s)       :
+JDK             : OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
+−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------*/
 package ch.heigvd.poo.labo5.tests;
 
 import ch.heigvd.poo.labo5.Matrix.Matrix;
