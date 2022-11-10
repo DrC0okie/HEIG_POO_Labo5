@@ -1,4 +1,15 @@
 -------------------------------------------------------------------------------
 Test set: ch.heigvd.poo.labo5.tests.ProgramTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s - in ch.heigvd.poo.labo5.tests.ProgramTest
+Tests run: 9, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.021 s <<< FAILURE! - in ch.heigvd.poo.labo5.tests.ProgramTest
+operationsInChain  Time elapsed: 0.01 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <3 3 3 2 2 
+4 4 4 2 2 
+5 5 5 2 1 
+> but was: <3 3 3 2 2 
+4 4 4 2 2 
+5 5 5 2 2 
+>
+	at ch.heigvd.poo.labo5.tests.ProgramTest.operationsInChain(ProgramTest.java:87)
+

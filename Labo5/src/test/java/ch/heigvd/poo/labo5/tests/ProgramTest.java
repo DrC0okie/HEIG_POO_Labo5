@@ -2,9 +2,8 @@
 File name       : ProgramTest.java
 Author(s)       : Kevin Farine, Timothée Van Hove
 Created         : 3 nov. 2022
-Description     : Program that execute +, - and * operations on matrices created
-                  with fixed values.
-Remark(s)       :
+Description     : Test program for the Matrix class
+Remark(s)       : Use "mvn clean test" command to launch the test
 JDK             : OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
 −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------*/
 package ch.heigvd.poo.labo5.tests;
@@ -19,7 +18,7 @@ public class ProgramTest {
 
     @Test
     /**
-     * Tests the program with the values given in the lab instructions
+     * Test that the nominal case given in the lab documentation is working
      */
     public void givenExampleTest() {
         Matrix m1 = new Matrix(
@@ -33,30 +32,57 @@ public class ProgramTest {
                         {0, 1, 0, 4, 2},
                         {0, 0, 2, 0, 2}}, 5);
 
-        int[][] resultAdd = new int[][]{
+        Matrix resultAdd = new Matrix(new int[][]{
                 {2, 2, 3, 4, 2},
                 {3, 3, 4, 1, 2},
-                {1, 0, 3, 0, 2}};
+                {1, 0, 3, 0, 2}}, 5);
 
-        int[][] resultSub = new int[][]{
+        Matrix resultSub = new Matrix(new int[][]{
                 {0, 4, 4, 3, 3},
                 {3, 1, 4, 3, 3},
-                {1, 0, 4, 0, 3}};
+                {1, 0, 4, 0, 3}}, 5);
 
-        int[][] resultMult = new int[][]{
+        Matrix resultMult = new Matrix(new int[][]{
                 {1, 2, 2, 3, 0},
                 {0, 2, 0, 3, 0},
-                {0, 0, 2, 0, 0}};
+                {0, 0, 2, 0, 0}}, 5);
 
-        //Test the printed matrices with the printed 2d result arrays
-        assertEquals(print2dArray(resultAdd),
+
+        assertEquals(resultAdd.toString(),
                 m1.executeOperation(m2, new Addition()).toString());
 
-        assertEquals(print2dArray(resultSub),
+        assertEquals(resultSub.toString(),
                 m1.executeOperation(m2, new Subtraction()).toString());
 
-        assertEquals(print2dArray(resultMult),
+        assertEquals(resultMult.toString(),
                 m1.executeOperation(m2, new Multiplication()).toString());
+    }
+
+    @Test
+    public void operationsInChain(){
+        Matrix m1 = new Matrix(
+                new int[][]{
+                        {1, 1, 1},
+                        {2, 2, 2},
+                        {3, 3, 3}}, 10);
+
+        Matrix m2 = new Matrix(
+                new int[][]{
+                        {1, 1, 1, 1, 1},
+                        {1, 1, 1, 1, 1},
+                        {1, 1, 1, 1, 1}}, 10);
+
+        Matrix result =
+                new Matrix(
+                        new int[][]{
+                                {3, 3, 3, 2, 2},
+                                {4, 4, 4, 2, 2},
+                                {5, 5, 5, 2, 2}}, 10);
+
+        m1 = m1.executeOperation(m2, new Addition())
+                        .executeOperation(m2, new Addition());
+
+        assertEquals(result.toString(),m1.toString());
     }
 
     @Test
@@ -83,35 +109,28 @@ public class ProgramTest {
     @Test
     public void checkConstructionWithValuesHigherThanModulus() {
         assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(new int[][]{{6}, {0}, {3}}, 5);});
+            new Matrix(new int[][]{{6}, {0}, {3}}, 5);
+        });
     }
 
     @Test
     public void checkConstructionWith0Row() {
         assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(0, 2, 2);});
+            new Matrix(0, 2, 2);
+        });
     }
 
     @Test
     public void checkConstructionWith0Column() {
         assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(2, -1, 2);});
+            new Matrix(2, -1, 2);
+        });
     }
 
     @Test
     public void checkConstructionWithNegativeModulus() {
         assertThrows(RuntimeException.class, () -> {
-            Matrix m = new Matrix(3, 3, -1);});
-    }
-
-    private String print2dArray(int[][] array) {
-        StringBuilder tmp = new StringBuilder();
-        for (int[] ints : array) {
-            for (int i = 0; i < array[0].length; ++i) {
-                tmp.append(ints[i]).append(" ");
-            }
-            tmp.append('\n');
-        }
-        return tmp.toString();
+            new Matrix(3, 3, -1);
+        });
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.018" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.021" tests="9" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="18"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Users\timot\.jdks\temurin-18.0.2.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\timot\AppData\Local\Temp\surefire6324110531021439689\surefirebooter3350861199224231598.jar C:\Users\timot\AppData\Local\Temp\surefire6324110531021439689 2022-11-09T22-19-01_285-jvmRun1 surefire16500125957265885380tmp surefire_0621832699698282938tmp"/>
+    <property name="sun.java.command" value="C:\Users\timot\AppData\Local\Temp\surefire8537512046489368068\surefirebooter14872617881367686980.jar C:\Users\timot\AppData\Local\Temp\surefire8537512046489368068 2022-11-10T09-10-34_650-jvmRun1 surefire7734591548312109922tmp surefire_011929433020537831445tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\timot\Documents\HEIG\POO\Labos\HEIG_POO_Labo5\Labo5\target\test-classes;C:\Users\timot\Documents\HEIG\POO\Labos\HEIG_POO_Labo5\Labo5\target\classes;C:\Users\timot\.m2\repository\javax\xml\bind\jaxb-api\2.3.1\jaxb-api-2.3.1.jar;C:\Users\timot\.m2\repository\com\sun\xml\bind\jaxb-core\2.3.0.1\jaxb-core-2.3.0.1.jar;C:\Users\timot\.m2\repository\com\sun\xml\bind\jaxb-impl\2.3.0.1\jaxb-impl-2.3.0.1.jar;C:\Users\timot\.m2\repository\javax\activation\javax.activation-api\1.2.0\javax.activation-api-1.2.0.jar;C:\Users\timot\.m2\repository\org\glassfish\jersey\core\jersey-client\2.15\jersey-client-2.15.jar;C:\Users\timot\.m2\repository\org\glassfish\jersey\core\jersey-common\2.15\jersey-common-2.15.jar;C:\Users\timot\.m2\repository\javax\annotation\javax.annotation-api\1.2\javax.annotation-api-1.2.jar;C:\Users\timot\.m2\repository\org\glassfish\jersey\bundles\repackaged\jersey-guava\2.15\jersey-guava-2.15.jar;C:\Users\timot\.m2\repository\org\glassfish\hk2\osgi-resource-locator\1.0.1\osgi-resource-locator-1.0.1.jar;C:\Users\timot\.m2\repository\javax\ws\rs\javax.ws.rs-api\2.0.1\javax.ws.rs-api-2.0.1.jar;C:\Users\timot\.m2\repository\org\glassfish\hk2\hk2-api\2.4.0-b06\hk2-api-2.4.0-b06.jar;C:\Users\timot\.m2\repository\org\glassfish\hk2\hk2-utils\2.4.0-b06\hk2-utils-2.4.0-b06.jar;C:\Users\timot\.m2\repository\org\glassfish\hk2\external\aopalliance-repackaged\2.4.0-b06\aopalliance-repackaged-2.4.0-b06.jar;C:\Users\timot\.m2\repository\org\glassfish\hk2\external\javax.inject\2.4.0-b06\javax.inject-2.4.0-b06.jar;C:\Users\timot\.m2\repository\org\glassfish\hk2\hk2-locator\2.4.0-b06\hk2-locator-2.4.0-b06.jar;C:\Users\timot\.m2\repository\org\javassist\javassist\3.18.1-GA\javassist-3.18.1-GA.jar;C:\Users\timot\.m2\repository\org\glassfish\jersey\media\jersey-media-json-jackson\2.14\jersey-media-json-jackson-2.14.jar;C:\Users\timot\.m2\repository\com\fasterxml\jackson\jaxrs\jackson-jaxrs-base\2.3.2\jackson-jaxrs-base-2.3.2.jar;C:\Users\timot\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.3.2\jackson-core-2.3.2.jar;C:\Users\timot\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.3.2\jackson-databind-2.3.2.jar;C:\Users\timot\.m2\repository\com\fasterxml\jackson\jaxrs\jackson-jaxrs-json-provider\2.3.2\jackson-jaxrs-json-provider-2.3.2.jar;C:\Users\timot\.m2\repository\com\fasterxml\jackson\module\jackson-module-jaxb-annotations\2.3.2\jackson-module-jaxb-annotations-2.3.2.jar;C:\Users\timot\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.3.2\jackson-annotations-2.3.2.jar;C:\Users\timot\.m2\repository\commons-io\commons-io\2.4\commons-io-2.4.jar;C:\Users\timot\.m2\repository\org\projectlombok\lombok\1.18.24\lombok-1.18.24.jar;C:\Users\timot\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.4.0\junit-jupiter-api-5.4.0.jar;C:\Users\timot\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\timot\.m2\repository\org\opentest4j\opentest4j\1.1.1\opentest4j-1.1.1.jar;C:\Users\timot\.m2\repository\org\junit\platform\junit-platform-commons\1.4.0\junit-platform-commons-1.4.0.jar;C:\Users\timot\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.4.0\junit-jupiter-engine-5.4.0.jar;C:\Users\timot\.m2\repository\org\junit\platform\junit-platform-engine\1.4.0\junit-platform-engine-1.4.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\timot\AppData\Local\Temp\surefire6324110531021439689\surefirebooter3350861199224231598.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\timot\AppData\Local\Temp\surefire8537512046489368068\surefirebooter14872617881367686980.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="18.0.2.1+1"/>
@@ -59,7 +59,19 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="62.0"/>
   </properties>
-  <testcase name="additionWithDifferentModulus" classname="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.008"/>
+  <testcase name="operationsInChain" classname="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.01">
+    <failure message="expected: &lt;3 3 3 2 2 &#10;4 4 4 2 2 &#10;5 5 5 2 1 &#10;&gt; but was: &lt;3 3 3 2 2 &#10;4 4 4 2 2 &#10;5 5 5 2 2 &#10;&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: 
+expected: <3 3 3 2 2 
+4 4 4 2 2 
+5 5 5 2 1 
+> but was: <3 3 3 2 2 
+4 4 4 2 2 
+5 5 5 2 2 
+>
+	at ch.heigvd.poo.labo5.tests.ProgramTest.operationsInChain(ProgramTest.java:87)
+]]></failure>
+  </testcase>
+  <testcase name="additionWithDifferentModulus" classname="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.001"/>
   <testcase name="multiplicationWithDifferentModulus" classname="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.001"/>
   <testcase name="givenExampleTest" classname="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.001"/>
   <testcase name="checkConstructionWithValuesHigherThanModulus" classname="ch.heigvd.poo.labo5.tests.ProgramTest" time="0.002"/>
