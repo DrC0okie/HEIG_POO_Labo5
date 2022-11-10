@@ -22,6 +22,10 @@ public class Program {
      */
     public static void main(String[] args) {
 
+        Matrix matrix = new Matrix(new int[][]{{1, 20, 100}, {1000, 4, 200}, {5, 6
+                , 7}, {1, 200, 0}},1001);
+        System.out.println(matrix);
+
         if (args.length != ARG_NUMBER) {
             System.err.println("5 expected arguments, " + args.length + " given.\n" +
                     "The arguments must be: <R1> <C1> <R2> <C2> <Modulus> \n" +

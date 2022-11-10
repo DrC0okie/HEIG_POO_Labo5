@@ -7,12 +7,10 @@ Remark(s)       :
 JDK             : OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
 −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------*/
 package ch.heigvd.poo.labo5.Matrix;
-import ch.heigvd.poo.labo5.operations.Addition;
-import ch.heigvd.poo.labo5.operations.Multiplication;
-import ch.heigvd.poo.labo5.operations.Operation;
-import ch.heigvd.poo.labo5.operations.Subtraction;
 
+import ch.heigvd.poo.labo5.operations.Operation;
 import java.util.Random;
+import ch.heigvd.poo.labo5.utils.Utils;
 
 public class Matrix {
 
@@ -29,9 +27,7 @@ public class Matrix {
      * @throws RuntimeException if an error occure, it would be this kind of error
      */
     public Matrix(int[][] values, int modulus) throws RuntimeException {
-        nbRows = values.length;
-        nbColumns = values[0].length;
-        this.modulus = modulus;
+        setIntervalValues(values.length, values[0].length, modulus);
         internalValue = new int[nbRows][nbColumns];
         for (int i = 0; i < nbRows; ++i) {
             for (int j = 0; j < nbColumns; ++j) {
@@ -52,15 +48,7 @@ public class Matrix {
      * @throws RuntimeException if an error occure, it would be this kind of error
      */
     public Matrix(int nbRows, int nbColumns, int modulus) throws RuntimeException {
-        if (modulus < 0)
-            throw new RuntimeException("The modulus must be > 0");
-
-        if (nbRows <= 0 || nbColumns <= 0)
-            throw new RuntimeException("The number of rows / columns must be > 0");
-
-        this.modulus = modulus;
-        this.nbRows = nbRows;
-        this.nbColumns = nbColumns;
+        setIntervalValues(nbRows, nbColumns, modulus);
         internalValue = new int[nbRows][nbColumns];
         for (int i = 0; i < nbRows; ++i) {
             for (int j = 0; j < nbColumns; ++j) {
@@ -75,14 +63,26 @@ public class Matrix {
      */
     @Override
     public String toString() {
-        StringBuilder tmp = new StringBuilder();
-        for (int i = 0; i < nbRows; ++i) {
-            for (int j = 0; j < nbColumns; ++j) {
-                tmp.append(internalValue[i][j]).append(" ");
+        StringBuilder result = new StringBuilder(new String());
+        int[] maxDigits = new int[nbColumns];
+        for (int i = 0; i < nbColumns; ++i) {
+            //Find the max value of each column
+            int maxValue = 0;
+            for (int j = 0; j < nbRows; ++j) {
+                maxValue = Math.max(maxValue, internalValue[j][i]);
             }
-            tmp.append('\n');
+            //Get the number of digits of the max number of each column
+            maxDigits[i] = Utils.nbDigits(maxValue);
         }
-        return tmp.toString();
+        for(int i = 0; i < nbRows; ++i){
+            for(int j = 0; j < nbColumns; ++j) {
+                // Get the number of space characters to prefix the value
+                int nbSpace = maxDigits[j] + 1 - Utils.nbDigits(internalValue[i][j]);
+                result.append(internalValue[i][j]).append(" ".repeat(nbSpace));
+            }
+            result.append("\n");
+        }
+        return result.toString();
     }
 
     /**
@@ -117,5 +117,16 @@ public class Matrix {
             }
         }
         return new Matrix(result, modulus);
+    }
+
+    private void setIntervalValues(int nbRows, int nbColumns, int modulus) throws RuntimeException {
+        if (nbRows <= 0 || nbColumns <= 0)
+            throw new RuntimeException("The number of rows / columns must be > 0");
+        if (modulus <= 0)
+            throw new RuntimeException("The modulus must be > 0");
+
+        this.nbRows = nbRows;
+        this.nbColumns = nbColumns;
+        this.modulus = modulus;
     }
 }
