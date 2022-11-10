@@ -21,11 +21,11 @@ public class Matrix {
     private static final Random random = new Random();
 
     /**
-     * Constructor who take an array of array of int and a modulus
-     * @param values    Array of array of int who is the base of the matrix
+     * Constructor who take a 2D array of int and a modulus
+     * @param values    2D array of int who is the base of the matrix
      * @param modulus   The modulus who will be used for the matrix
-     * @throws RuntimeException if an error occure, it would be this kind of error
-     */
+     * @throws RuntimeException if modulus, nbRows, nbColumns <= 0, or if a matrix
+     * value is >= modulus*/
     public Matrix(int[][] values, int modulus) throws RuntimeException {
         setIntervalValues(values.length, values[0].length, modulus);
         internalValue = new int[nbRows][nbColumns];
@@ -45,7 +45,7 @@ public class Matrix {
      * @param nbRows    The number of rows of the matrix
      * @param nbColumns The number of columns of the matrix
      * @param modulus   The modulus who will be used for the matrix
-     * @throws RuntimeException if an error occure, it would be this kind of error
+     * @throws RuntimeException if modulus, nbRows, nbColumns <= 0
      */
     public Matrix(int nbRows, int nbColumns, int modulus) throws RuntimeException {
         setIntervalValues(nbRows, nbColumns, modulus);
@@ -58,8 +58,8 @@ public class Matrix {
     }
 
     /**
-     * Method who convert the attribute of the class into a string
-     * @return  The string who will be return
+     * Returns the formatted representation of the matrix with auto-align
+     * @return  The formatted representation of the matrix as String
      */
     @Override
     public String toString() {
@@ -86,10 +86,10 @@ public class Matrix {
     }
 
     /**
-     * Method who control if the index is inside of the matrix or not
-     * @param rowIndex      Index of the row who will be checked
-     * @param columnIndex   Index of the column who will be checked
-     * @return      a boolean who confirm the index are inside the matrix or not
+     * Controls if the indexes are within the bounds of the matrix
+     * @param rowIndex      Index of the row which is checked
+     * @param columnIndex   Index of the column which is checked
+     * @return      true if the indexes are in the bounds of the matrix, else false
      */
     private boolean inBounds(int rowIndex, int columnIndex) {
         return rowIndex <= nbRows - 1 && columnIndex <= nbColumns - 1;
@@ -97,10 +97,10 @@ public class Matrix {
 
     /**
      * Method who execute the operation from the class Operation and return a matrix as result
-     * @param rhs   The second matrix who be used to calculate with the base matrix
-     * @param op    The operation who will be used to calculate the new matrix
-     * @return      Return a matrix who is the result of the calculation
-     * @throws RuntimeException if an error occure, it would be this kind of error
+     * @param rhs   The second matrix which is used to calculate with the base matrix
+     * @param op    The operation which will be used to calculate the new matrix
+     * @return      A new matrix who is the result of the operation
+     * @throws RuntimeException if the modulus of the 2 matrices are different
      */
     public Matrix executeOperation(Matrix rhs, Operation op) throws RuntimeException {
         if (this.modulus != rhs.modulus)
@@ -119,6 +119,13 @@ public class Matrix {
         return new Matrix(result, modulus);
     }
 
+    /**
+     * Helper method used for vales initialization within the class
+     * @param nbRows The number of rows to be set
+     * @param nbColumns The number of columns to be set
+     * @param modulus The modulus value to be set
+     * @throws RuntimeException if modulus, nbRows, nbColumns <= 0
+     */
     private void setIntervalValues(int nbRows, int nbColumns, int modulus) throws RuntimeException {
         if (nbRows <= 0 || nbColumns <= 0)
             throw new RuntimeException("The number of rows / columns must be > 0");
