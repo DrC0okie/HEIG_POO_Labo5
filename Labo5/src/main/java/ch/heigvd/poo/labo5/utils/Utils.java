@@ -20,14 +20,14 @@ public final class Utils {
 
     /**
      * Converts a String[] into an int[]
-     * @param args The String array to be converted
+     * @param array The String array to be converted
      * @return The converted int array
      * @throws NumberFormatException if the character cannot be cast to int
      */
-    static public int[] StringArraytoIntArray(String[] args) throws NumberFormatException {
-        int[] arguments = new int[args.length];
-        for (int i = 0; i < args.length; ++i)
-            arguments[i] = Integer.parseInt(args[i]);
+    static public int[] StringArraytoIntArray(String[] array) throws NumberFormatException {
+        int[] arguments = new int[array.length];
+        for (int i = 0; i < array.length; ++i)
+            arguments[i] = Integer.parseInt(array[i]);
         return arguments;
     }
 }

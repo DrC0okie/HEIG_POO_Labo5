@@ -14,7 +14,7 @@ import ch.heigvd.poo.labo5.utils.Utils;
 
 public class Matrix {
 
-    private int[][] internalValue;
+    private final int[][] internalValue;
 
     private int modulus;
 
@@ -143,7 +143,12 @@ public class Matrix {
                 && columnIndex <= internalValue[0].length - 1;
     }
 
-    void checkNullArray(Object obj){
+    /**
+     * Checks if the given object is null. In this case the objects are arrays
+     * @param obj The object to be tested
+     * @throws RuntimeException if the given object is null
+     */
+    private void checkNullArray(Object obj)throws RuntimeException{
         if(obj == null)
             throw new RuntimeException("The array is null");
     }
