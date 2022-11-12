@@ -27,18 +27,17 @@ public class Matrix {
      * @throws RuntimeException If modulus, nbRows, nbColumns <= 0, or if a matrix
      * value is >= modulus*/
     public Matrix(int[][] values, int modulus) throws RuntimeException {
-        checkNullArray(values);
-        checkNullArray(values[0]);
+        checkNull(values);
+        checkNull(values[0]);
         checkAndSetModulus(modulus);
-
         internalValue = new int[values.length][values[0].length];
         for (int i = 0; i < values.length; ++i) {
+            checkNull(values[i]);
             if(values[i].length != values[0].length){
                 throw new RuntimeException("The given 2d array must have the same " +
                         "number of elements j for each rows i");
             }
             for (int j = 0; j < values[0].length; ++j) {
-                checkNullArray(values[i]);
                 if (values[i][j] < 0 || values[i][j] >= this.modulus) {
                     throw new RuntimeException(
                             "The given values must be > 0 and < " + (modulus - 1));
@@ -104,10 +103,12 @@ public class Matrix {
      * @throws RuntimeException if the modulus of the 2 matrices are different
      */
     public Matrix executeOperation(Matrix rhs, Operation op) throws RuntimeException {
-        if (this.modulus != rhs.modulus)
+        checkNull(rhs);
+        checkNull(op);
+        if (this.modulus != rhs.modulus){
             throw new RuntimeException("The modulus of the 2 matrices must be " +
                     "identical");
-
+        }
         int maxRows = Math.max(internalValue.length, rhs.internalValue.length);
         int maxColumns = Math.max(internalValue[0].length, rhs.internalValue[0].length);
         int[][] result = new int[maxRows][maxColumns];
@@ -144,12 +145,12 @@ public class Matrix {
     }
 
     /**
-     * Checks if the given object is null. In this case the objects are arrays
-     * @param obj The object to be tested
-     * @throws RuntimeException if the given object is null
+     * Checks if the given object is null
+     * @param obj the object to check
      */
-    private void checkNullArray(Object obj)throws RuntimeException{
-        if(obj == null)
-            throw new RuntimeException("The array is null");
+    private void checkNull(Object obj){
+        if(obj == null){
+            throw new RuntimeException("The given object is null");
+        }
     }
 }

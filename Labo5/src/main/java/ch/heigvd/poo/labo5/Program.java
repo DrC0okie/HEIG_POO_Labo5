@@ -12,6 +12,7 @@ package ch.heigvd.poo.labo5;
 
 import ch.heigvd.poo.labo5.Matrix.Matrix;
 import ch.heigvd.poo.labo5.operations.*;
+
 import static ch.heigvd.poo.labo5.utils.Utils.StringArraytoIntArray;
 
 public class Program {
@@ -27,30 +28,24 @@ public class Program {
                         "<R1> : number of rows in the matrix 1\n" +
                         "<C1> : number of columns in the matrix 1\n");
             }
-            try {
-                int[] arguments = StringArraytoIntArray(args);
-                Matrix m1 = new Matrix(arguments[0], arguments[1], arguments[4]);
-                Matrix m2 = new Matrix(arguments[2], arguments[3], arguments[4]);
+            int[] arguments = StringArraytoIntArray(args);
+            Matrix m1 = new Matrix(arguments[0], arguments[1], arguments[4]);
+            Matrix m2 = new Matrix(arguments[2], arguments[3], arguments[4]);
 
-                //Display the matrices
-                System.out.println( M1 + ": \n" + m1 + "\n" + M2 + ": \n" + m2);
+            //Display the matrices
+            System.out.println(M1 + ": \n" + m1 + "\n" + M2 + ": \n" + m2);
 
-                // Create an Operation array to iterate on it
-                Operation[] operations = new Operation[]{
-                        new Addition(), new Subtraction(), new Multiplication()};
+            // Create an Operation array to iterate on it
+            Operation[] operations = new Operation[]{
+                    new Addition(), new Subtraction(), new Multiplication()};
 
-                //Display each operation result
-                for(Operation op : operations){
-                    System.out.println(M1 + " " + op + " " + M2 + ":");
-                    System.out.println(m1.executeOperation(m2, op));
-                }
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException("The given arguments must be integer " +
-                        "numbers");
+            //Display each operation result
+            for (Operation op : operations) {
+                System.out.println(M1 + " " + op + " " + M2 + ":");
+                System.out.println(m1.executeOperation(m2, op));
             }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            System.err.println("The program will exit.");
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         }
     }
 }
