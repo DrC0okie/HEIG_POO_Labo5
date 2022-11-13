@@ -18,31 +18,29 @@ public class MatrixTest {
 
     @Test
     public void testNominalCase() {
-        Matrix m1 = new Matrix(
-                new int[][]{
-                        {1, 3, 1, 1},
-                        {3, 2, 4, 2},
-                        {1, 0, 1, 0}}, 5);
-        Matrix m2 = new Matrix(
-                new int[][]{
-                        {1, 4, 2, 3, 2},
-                        {0, 1, 0, 4, 2},
-                        {0, 0, 2, 0, 2}}, 5);
+        Matrix m1 = new Matrix(new int[][]{
+                                {1, 3, 1, 1},
+                                {3, 2, 4, 2},
+                                {1, 0, 1, 0}}, 5);
+        Matrix m2 = new Matrix(new int[][]{
+                                {1, 4, 2, 3, 2},
+                                {0, 1, 0, 4, 2},
+                                {0, 0, 2, 0, 2}}, 5);
 
         Matrix resultAdd = new Matrix(new int[][]{
-                {2, 2, 3, 4, 2},
-                {3, 3, 4, 1, 2},
-                {1, 0, 3, 0, 2}}, 5);
+                                        {2, 2, 3, 4, 2},
+                                        {3, 3, 4, 1, 2},
+                                        {1, 0, 3, 0, 2}}, 5);
 
         Matrix resultSub = new Matrix(new int[][]{
-                {0, 4, 4, 3, 3},
-                {3, 1, 4, 3, 3},
-                {1, 0, 4, 0, 3}}, 5);
+                                        {0, 4, 4, 3, 3},
+                                        {3, 1, 4, 3, 3},
+                                        {1, 0, 4, 0, 3}}, 5);
 
         Matrix resultMult = new Matrix(new int[][]{
-                {1, 2, 2, 3, 0},
-                {0, 2, 0, 3, 0},
-                {0, 0, 2, 0, 0}}, 5);
+                                        {1, 2, 2, 3, 0},
+                                        {0, 2, 0, 3, 0},
+                                        {0, 0, 2, 0, 0}}, 5);
 
 
         assertEquals(resultAdd.toString(),
@@ -57,21 +55,18 @@ public class MatrixTest {
 
     @Test
     public void testChainOperations(){
-        Matrix m1 = new Matrix(
-                new int[][]{
-                        {1, 1, 1},
-                        {2, 2, 2},
-                        {3, 3, 3}}, 10);
+        Matrix m1 = new Matrix(new int[][]{
+                                {1, 1, 1},
+                                {2, 2, 2},
+                                {3, 3, 3}}, 10);
 
-        Matrix m2 = new Matrix(
-                new int[][]{
-                        {1, 1, 1, 1, 1},
-                        {1, 1, 1, 1, 1},
-                        {1, 1, 1, 1, 1}}, 10);
+        Matrix m2 = new Matrix(new int[][]{
+                                {1, 1, 1, 1, 1},
+                                {1, 1, 1, 1, 1},
+                                {1, 1, 1, 1, 1}}, 10);
 
         Matrix result =
-                new Matrix(
-                        new int[][]{
+                new Matrix(new int[][]{
                                 {3, 3, 3, 2, 2},
                                 {4, 4, 4, 2, 2},
                                 {5, 5, 5, 2, 2}}, 10);

@@ -18,7 +18,6 @@ public class ProgramTest {
     //We can only verify that the program runs as expected by looking at the console
     public void testTheMainProgram() {
 
-        //The program should not display any errors
         String[][] argList = {
                 //The program should show correct matrices (nominal case)
                 {"4", "5", "2", "7", "100"},
