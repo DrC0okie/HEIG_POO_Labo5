@@ -413,7 +413,7 @@
 											"font": "Arial;13;3",
 											"left": 333,
 											"top": 671,
-											"width": 238.13232421875,
+											"width": 241.744140625,
 											"height": 13,
 											"text": "Operation"
 										},
@@ -448,7 +448,7 @@
 									"font": "Arial;13;0",
 									"left": 328,
 									"top": 664,
-									"width": 248.13232421875,
+									"width": 251.744140625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGEXPNuZa9IKxs="
@@ -485,7 +485,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 694,
-											"width": 238.13232421875,
+											"width": 241.744140625,
 											"height": 13,
 											"text": "#symbol: String",
 											"horizontalAlignment": 0
@@ -494,7 +494,7 @@
 									"font": "Arial;13;0",
 									"left": 328,
 									"top": 689,
-									"width": 248.13232421875,
+									"width": 251.744140625,
 									"height": 23
 								},
 								{
@@ -519,9 +519,9 @@
 											"font": "Arial;13;2",
 											"left": 333,
 											"top": 717,
-											"width": 238.13232421875,
+											"width": 241.744140625,
 											"height": 13,
-											"text": "+execute(operand1: int, operand2 int): int",
+											"text": "+execute(operand1: int, operand2: int): int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -536,7 +536,7 @@
 											"font": "Arial;13;0",
 											"left": 333,
 											"top": 732,
-											"width": 238.13232421875,
+											"width": 241.744140625,
 											"height": 13,
 											"text": "+toString()",
 											"horizontalAlignment": 0
@@ -545,7 +545,7 @@
 									"font": "Arial;13;0",
 									"left": 328,
 									"top": 712,
-									"width": 248.13232421875,
+									"width": 251.744140625,
 									"height": 38
 								},
 								{
@@ -585,7 +585,7 @@
 							"containerChangeable": true,
 							"left": 328,
 							"top": 664,
-							"width": 248.13232421875,
+							"width": 251.744140625,
 							"height": 86,
 							"autoResize": true,
 							"nameCompartment": {
@@ -1512,7 +1512,7 @@
 											"font": "Arial;13;1",
 											"left": 325,
 											"top": 287,
-											"width": 239,
+											"width": 229.37890625,
 											"height": 13,
 											"text": "Utils"
 										},
@@ -1547,7 +1547,7 @@
 									"font": "Arial;13;0",
 									"left": 320,
 									"top": 280,
-									"width": 249,
+									"width": 239.37890625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGEZ1XybEuYsag="
@@ -1574,7 +1574,7 @@
 									"font": "Arial;13;0",
 									"left": 320,
 									"top": 305,
-									"width": 249,
+									"width": 239.37890625,
 									"height": 10
 								},
 								{
@@ -1599,7 +1599,7 @@
 											"font": "Arial;13;0",
 											"left": 325,
 											"top": 320,
-											"width": 239,
+											"width": 229.37890625,
 											"height": 13,
 											"underline": true,
 											"text": "+nbDigits(number: int): int",
@@ -1617,7 +1617,7 @@
 											"font": "Arial;13;0",
 											"left": 325,
 											"top": 335,
-											"width": 239,
+											"width": 229.37890625,
 											"height": 13,
 											"underline": true,
 											"text": "+StringArraytoIntArray(array: String): int",
@@ -1627,7 +1627,7 @@
 									"font": "Arial;13;0",
 									"left": 320,
 									"top": 315,
-									"width": 249,
+									"width": 239.37890625,
 									"height": 38
 								},
 								{
@@ -1667,8 +1667,9 @@
 							"containerChangeable": true,
 							"left": 320,
 							"top": 280,
-							"width": 249,
-							"height": 105,
+							"width": 239.37890625,
+							"height": 73,
+							"autoResize": true,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEZ1XybEuXU40="
 							},
@@ -2001,7 +2002,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGEXPW8WK9xhdU="
 									},
-									"name": "operand2 int"
+									"name": "operand2",
+									"type": "int"
 								},
 								{
 									"_type": "UMLParameter",

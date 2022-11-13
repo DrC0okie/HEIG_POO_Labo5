@@ -2,7 +2,7 @@
 File name       : Addition.java
 Author(s)       : Kevin Farine, Timothée Van Hove
 Created         : 3 nov. 2022
-Description     : Subclass of Operatio who do the addition
+Description     : Subclass of Operation who do the addition
 Remark(s)       :
 JDK             : OpenJDK Runtime Environment Temurin-17.0.5+8 (build 17.0.5+8)
 −−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−------------------------------------------------*/
