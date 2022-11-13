@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class MatrixTest {
 
     @Test
-    public void nominalCaseTest() {
+    public void testNominalCase() {
         Matrix m1 = new Matrix(
                 new int[][]{
                         {1, 3, 1, 1},
@@ -56,7 +56,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void operationsInChain(){
+    public void testChainOperations(){
         Matrix m1 = new Matrix(
                 new int[][]{
                         {1, 1, 1},
@@ -83,34 +83,34 @@ public class MatrixTest {
     }
 
     @Test
-    public void additionWithDifferentModulus() {
+    public void testAdditionWithDifferentModulus() {
         assertThrows(RuntimeException.class,
                 () -> new Matrix(3, 4, 5).executeOperation(
                         new Matrix(3, 4, 6), new Addition()));
     }
 
     @Test
-    public void subtractionWithDifferentModulus() {
+    public void testSubtractionWithDifferentModulus() {
         assertThrows(RuntimeException.class,
                 () -> new Matrix(1, 4, 1).executeOperation(
                         new Matrix(10, 11, 6), new Subtraction()));
     }
 
     @Test
-    public void multiplicationWithDifferentModulus() {
+    public void testMultiplicationWithDifferentModulus() {
         assertThrows(RuntimeException.class,
                 () -> new Matrix(100, 200, 1000).executeOperation(
                         new Matrix(66, 1, 1001), new Multiplication()));
     }
 
     @Test
-    public void checkConstructionWithValuesHigherThanModulus() {
+    public void testConstructionWithValuesHigherThanModulus() {
         assertThrows(RuntimeException.class, () ->
             new Matrix(new int[][]{{6}, {0}, {3}}, 5));
     }
 
     @Test
-    public void checkConstructionWithIrregularMatrix(){
+    public void testConstructionWithIrregularMatrix(){
         assertThrows(RuntimeException.class, () ->
                 new Matrix(new int[][]{{6, 3, 1}, {0}, {3, 1}}, 5));
         assertThrows(RuntimeException.class, () ->
@@ -118,12 +118,12 @@ public class MatrixTest {
     }
 
     @Test
-    public void checkConstructionWithNullArray(){
+    public void testConstructionWithNullArray(){
         assertThrows(RuntimeException.class, () -> new Matrix(null, 5));
     }
 
     @Test
-    public void checkConstructionWithArrayContainingNullRow(){
+    public void testConstructionWithArrayContainingNullRow(){
         assertThrows(RuntimeException.class, () -> new Matrix(
                 new int[][]{{0, 0, 2, 0, 0}, {0, 0, 2, 0, 0}, null}, 5));
         assertThrows(RuntimeException.class, () -> new Matrix(
@@ -131,22 +131,22 @@ public class MatrixTest {
     }
 
     @Test
-    public void checkConstructionWith0Row() {
+    public void testConstructionWith0Row() {
         assertThrows(RuntimeException.class, () -> new Matrix(0, 2, 2));
     }
 
     @Test
-    public void checkConstructionWith0Column() {
+    public void testConstructionWith0Column() {
         assertThrows(RuntimeException.class, () -> new Matrix(2, -1, 2));
     }
 
     @Test
-    public void checkConstructionWithNegativeAnd0Modulus() {
+    public void testConstructionWithNegativeAnd0Modulus() {
         assertThrows(RuntimeException.class, () -> new Matrix(3, 3, -1));
     }
 
     @Test
-    public void checkConstrictionWith0Modulus(){
+    public void testConstrictionWith0Modulus(){
         assertThrows(RuntimeException.class, () ->
                 new Matrix(new int[][]{{6}, {0}, {3}}, 0));
     }

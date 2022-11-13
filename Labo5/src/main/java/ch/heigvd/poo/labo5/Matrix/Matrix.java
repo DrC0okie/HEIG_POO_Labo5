@@ -10,7 +10,7 @@ package ch.heigvd.poo.labo5.Matrix;
 
 import ch.heigvd.poo.labo5.operations.Operation;
 import java.util.Random;
-import ch.heigvd.poo.labo5.utils.Utils;
+import ch.heigvd.poo.labo5.util.Util;
 
 public class Matrix {
 
@@ -25,14 +25,13 @@ public class Matrix {
      * @param values 2D array of int who is the base of the matrix
      * @param modulus The modulus who will be used for the matrix
      * @throws RuntimeException If modulus, nbRows, nbColumns <= 0, or if a matrix
-     * value is >= modulus*/
+     * value is >= modulus
+     * @throws  NullPointerException if the given int[][], or one of its inner array
+     * is null*/
     public Matrix(int[][] values, int modulus) throws RuntimeException {
-        checkNull(values);
-        checkNull(values[0]);
         checkAndSetModulus(modulus);
         internalValue = new int[values.length][values[0].length];
         for (int i = 0; i < values.length; ++i) {
-            checkNull(values[i]);
             if(values[i].length != values[0].length){
                 throw new RuntimeException("The given 2d array must have the same " +
                         "number of elements j for each rows i");
@@ -82,12 +81,12 @@ public class Matrix {
                 maxValue = Math.max(maxValue, row[i]);
             }
             //Get the number of digits of the max number of each column
-            maxDigits[i] = Utils.nbDigits(maxValue);
+            maxDigits[i] = Util.nbDigits(maxValue);
         }
         for (int[] row : internalValue) {
             for (int j = 0; j < internalValue[0].length; ++j) {
                 // Get the number of space characters to add after each value
-                int nbSpace = maxDigits[j] + 1 - Utils.nbDigits(row[j]);
+                int nbSpace = maxDigits[j] + 1 - Util.nbDigits(row[j]);
                 result.append(row[j]).append(" ".repeat(nbSpace));
             }
             result.append("\n");
@@ -101,10 +100,9 @@ public class Matrix {
      * @param op The operation used to calculate the new matrix
      * @return The operation result as a new matrix object
      * @throws RuntimeException if the modulus of the 2 matrices are different
+     * @throws NullPointerException if the given Matrix or Operation is null
      */
     public Matrix executeOperation(Matrix rhs, Operation op) throws RuntimeException {
-        checkNull(rhs);
-        checkNull(op);
         if (this.modulus != rhs.modulus){
             throw new RuntimeException("The modulus of the 2 matrices must be " +
                     "identical");
@@ -115,8 +113,7 @@ public class Matrix {
 
         for (int i = 0; i < maxRows; ++i) {
             for (int j = 0; j < maxColumns; ++j) {
-                int valM1 = inBounds(i, j) ? internalValue[i][j] : 0;
-                int valM2 = rhs.inBounds(i, j) ? rhs.internalValue[i][j] : 0;
+                int valM1 = checkBounds(i, j), valM2 = rhs.checkBounds(i, j);
                 result[i][j] = Math.floorMod(op.execute(valM1, valM2), modulus);
             }
         }
@@ -137,20 +134,14 @@ public class Matrix {
      * Controls if the indexes are within the bounds of the matrix
      * @param rowIndex Index of the row which is checked
      * @param columnIndex Index of the column which is checked
-     * @return True if the indexes are in the bounds of the matrix, else false
+     * @return internalValue[rowIndex][columnIndex] if the indexes are in the bounds
+     * of the matrix, else 0
      */
-    private boolean inBounds(int rowIndex, int columnIndex) {
-        return rowIndex <= internalValue.length - 1
-                && columnIndex <= internalValue[0].length - 1;
-    }
-
-    /**
-     * Checks if the given object is null
-     * @param obj the object to check
-     */
-    private void checkNull(Object obj){
-        if(obj == null){
-            throw new RuntimeException("The given object is null");
+    private int checkBounds(int rowIndex, int columnIndex) {
+        if(rowIndex <= internalValue.length - 1
+                && columnIndex <= internalValue[0].length - 1){
+            return internalValue[rowIndex][columnIndex];
         }
+        return 0;
     }
 }

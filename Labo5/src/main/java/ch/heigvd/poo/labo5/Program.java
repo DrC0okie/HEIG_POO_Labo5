@@ -13,7 +13,7 @@ package ch.heigvd.poo.labo5;
 import ch.heigvd.poo.labo5.Matrix.Matrix;
 import ch.heigvd.poo.labo5.operations.*;
 
-import static ch.heigvd.poo.labo5.utils.Utils.StringArraytoIntArray;
+import static ch.heigvd.poo.labo5.util.Util.StringArrayToIntArray;
 
 public class Program {
     final static int ARG_NUMBER = 5;
@@ -28,7 +28,7 @@ public class Program {
                         "<R1> : number of rows in the matrix 1\n" +
                         "<C1> : number of columns in the matrix 1\n");
             }
-            int[] arguments = StringArraytoIntArray(args);
+            int[] arguments = StringArrayToIntArray(args);
             Matrix m1 = new Matrix(arguments[0], arguments[1], arguments[4]);
             Matrix m2 = new Matrix(arguments[2], arguments[3], arguments[4]);
 
@@ -46,6 +46,7 @@ public class Program {
             }
         } catch (RuntimeException e) {
             e.printStackTrace();
+            System.err.println("The program will exit");
         }
     }
 }
